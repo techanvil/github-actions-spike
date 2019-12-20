@@ -20,17 +20,17 @@ jobs:
         run: ls -l $0 ; wc -l $0 ; echo 'Contents of $0:' ; while read -r line; do echo $line; done < $0
       - name: Examine PWD
         run: echo $PWD ; ls -ltra ; find .
-      - name: Extract string from GitHub tag ref e.g. 'refs/tags/foo.0.0.2' -> 'foo'
+      - name: Extract string from Git tag ref e.g. 'refs/tags/foo.0.0.2' -> 'foo'
         run: tag=${GITHUB_REF/*tags\//} ; str=${tag/.*/} ; echo 'Extracted string:' $str
       - uses: actions/checkout@v1
       - name: Examine PWD again
         run: echo $PWD ; ls -ltra ; find .
-      - name: Script for string from GitHub tag ref
+      - name: Script for string from Git tag ref
         run: echo 'GITHUB_REF:' $GITHUB_REF ; echo 'Extracted string:' $(./scripts/name_from_tagref.sh)
       - name: Run script with argument derived from tag
         run: ./scripts/cat.sh $(./scripts/name_from_tagref.sh).env
       - if: contains(github.ref, 'tags/foo')
-        name: Conditional step, runs if GitHub ref contains 'tags/foo'
+        name: Conditional step, runs if Git ref contains 'tags/foo'
         run: ./scripts/cat.sh foo.env
       - name: Dump GitHub context
         env:
@@ -59,7 +59,7 @@ jobs:
   two:
     if: contains(github.ref, 'tags/bar')
     runs-on: [ubuntu-18.04]
-    name: Conditional job, runs if GitHub ref contains 'tags/bar'
+    name: Conditional job, runs if Git ref contains 'tags/bar'
     steps:
       - uses: actions/checkout@v1
       - name: Run a specific script

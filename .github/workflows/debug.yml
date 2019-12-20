@@ -8,7 +8,7 @@ jobs:
   one:
     runs-on: ubuntu-18.04
     env:
-      GITHUB_TAG_REF: github.ref
+      GITHUB_TAG_REF: ${{ github.ref }}
     steps:
       - name: Dump GitHub context
         env:

@@ -15,7 +15,7 @@ jobs:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT" && env | grep 'GITHUB|RUNNER' | sort
+        run: echo "$GITHUB_CONTEXT" && env | egrep 'GITHUB|RUNNER' | sort
       - name: Dump job context
         env:
           JOB_CONTEXT: ${{ toJson(job) }}

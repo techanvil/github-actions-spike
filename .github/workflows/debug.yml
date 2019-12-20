@@ -15,7 +15,7 @@ jobs:
       - name: Dump GITHUB & RUNNER environment variables
         run: env | egrep '^(GITHUB|RUNNER)_' | sort
       - name: Confirm shell
-        run: echo '$0:' $0
+        run: echo '$0:' $0 ; cat $0
       - name: Extract string from GitHub tag ref e.g. 'refs/tags/foo.0.0.2' -> 'foo'
         run: tag=${GITHUB_REF/*tags\//}; echo 'tag:' ${tag/.*/}
       - name: Dump GitHub context

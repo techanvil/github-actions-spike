@@ -7,11 +7,13 @@ on:
 jobs:
   one:
     runs-on: ubuntu-18.04
+    env:
+      GITHUB_TAG_REF: github.ref
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+        run: echo "$GITHUB_CONTEXT" && env
       - name: Dump job context
         env:
           JOB_CONTEXT: ${{ toJson(job) }}

@@ -19,13 +19,12 @@ jobs:
       - name: Examine shell
         run: ls -l $0 ; wc -l $0 ; echo 'Contents of $0:' ; while read -r line; do echo $line; done < $0
       - name: Examine PWD
-        run: |
-          echo $PWD
-          ls -ltra
-          find .
+        run: echo $PWD ; ls -ltra ; find .
       - name: Extract string from GitHub tag ref e.g. 'refs/tags/foo.0.0.2' -> 'foo'
         run: tag=${GITHUB_REF/*tags\//} ; str=${tag/.*/} ; echo 'Extracted string:' $str
       - uses: actions/checkout@v1
+      - name: Examine PWD again
+        run: echo $PWD ; ls -ltra ; find .
       - name: Script for string from GitHub tag ref
         run: ./scripts/name_from_tagref.sh
       - name: Dump GitHub context

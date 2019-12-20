@@ -9,13 +9,19 @@ on:
 jobs:
   one:
     runs-on: ubuntu-18.04
-    env:
-      GITHUB_TAG_REF: ${{ github.ref }}
     steps:
+      - name: Dump environment variables
+        run: env | sort
+      - name: Dump GITHUB & RUNNER environment variables
+        run: env | egrep '^(GITHUB|RUNNER)_' | sort
+      - name: Confirm shell
+        run: echo '$0:' $0
+      - name: Extract string from GitHub tag ref e.g. 'refs/tags/foo.0.0.2' -> 'foo'
+        run: tag=${GITHUB_REF/*tags\//}; echo 'tag:' ${tag/.*/}
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT" && env | egrep 'GITHUB|RUNNER' | sort
+        run: echo "$GITHUB_CONTEXT"
       - name: Dump job context
         env:
           JOB_CONTEXT: ${{ toJson(job) }}

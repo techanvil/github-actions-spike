@@ -27,6 +27,8 @@ jobs:
         run: echo $PWD ; ls -ltra ; find .
       - name: Script for string from GitHub tag ref
         run: echo 'GITHUB_REF:' $GITHUB_REF ; echo 'Extracted string:' $(./scripts/name_from_tagref.sh)
+      - name: Run script with argument derived from tag
+        run: ./scripts/cat.sh $(./scripts/name_from_tagref.sh).env
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}

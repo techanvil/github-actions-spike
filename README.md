@@ -1,2 +1,2 @@
 # github-actions-spike
-Investigating GitHub actions!
+Investigating GitHub actions.

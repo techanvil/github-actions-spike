@@ -56,3 +56,11 @@ jobs:
         env:
           MATRIX_CONTEXT: ${{ toJson(matrix) }}
         run: echo "$MATRIX_CONTEXT"
+  two:
+    if: contains(github.ref, 'tags/bar')
+    runs-on: [ubuntu-18.04]
+    name: Conditional job, runs if GitHub ref contains 'tags/bar'
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run a specific script
+        run: ./scripts/cat.sh bar.env

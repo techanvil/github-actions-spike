@@ -16,12 +16,12 @@ jobs:
         run: echo 'GITHUB_REF:' $GITHUB_REF ; echo 'Extracted string:' $(./scripts/name_from_tagref.sh)
       - name: Run script with argument derived from tag
         run: ./scripts/cat.sh $(./scripts/name_from_tagref.sh).env
-			- name: Set app.terraform.io token
+      - name: Set app.terraform.io token
         env:
           TERRAFORM_TOKEN: ${{ secrets.TERRAFORM_TOKEN }}
         run: echo "credentials \"app.terraform.io\" { token = \"$TERRAFORM_TOKEN\" }" > ~/.terraformrc
-			- name: Apply Terraform
-				env:
+      - name: Apply Terraform
+        env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-				run: cd terraform && terraform apply
+        run: cd terraform && terraform apply

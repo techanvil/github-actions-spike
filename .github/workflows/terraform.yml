@@ -12,6 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: marocchino/setup-terraform@v1
+        with:
+          version: 0.12.13
       - name: Script for string from Git tag ref
         run: echo 'GITHUB_REF:' $GITHUB_REF ; echo 'Extracted string:' $(./scripts/name_from_tagref.sh)
       - name: Run script with argument derived from tag

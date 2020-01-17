@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v1
-      - uses: marocchino/setup-terraform@v1
+      - uses: marocchino/setup-terraform@v1.0.1
         with:
           version: 0.12.18
       - name: Script for string from Git tag ref

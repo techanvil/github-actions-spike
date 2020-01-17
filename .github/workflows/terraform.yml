@@ -17,10 +17,12 @@ jobs:
       - uses: marocchino/setup-terraform@v1.0.1
         with:
           version: 0.12.18
+      - name: Verify Terraform version
+        run: terraform -version
       - name: Script for string from Git tag ref
         run: echo 'GITHUB_REF:' $GITHUB_REF ; echo 'Extracted string:' $(./scripts/name_from_tagref.sh)
-      - name: Run script with argument derived from tag
-        run: ./scripts/cat.sh $(./scripts/name_from_tagref.sh).env
+      - name: (Don't) run script with argument derived from tag
+        run: echo ./scripts/cat.sh $(./scripts/name_from_tagref.sh).env
       - name: Set app.terraform.io token
         env:
           TERRAFORM_TOKEN: ${{ secrets.TERRAFORM_TOKEN }}

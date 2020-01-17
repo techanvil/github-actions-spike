@@ -1,7 +1,10 @@
 on:
   push:
     tags:
-      - tea.*
+      - *@foo.somewhere
+        *@foo.random
+        *@bar.somewhere
+        *@bar.odd
 
 env:
   TERRAFORM_VERSION: '0.12.9'
@@ -13,7 +16,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: marocchino/setup-terraform@v1
         with:
-          version: 0.12.13
+          version: 0.12.18
       - name: Script for string from Git tag ref
         run: echo 'GITHUB_REF:' $GITHUB_REF ; echo 'Extracted string:' $(./scripts/name_from_tagref.sh)
       - name: Run script with argument derived from tag

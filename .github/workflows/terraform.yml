@@ -24,7 +24,9 @@ jobs:
       - name: (Don't) run script with argument derived from tag
         run: echo ./scripts/cat.sh $(./scripts/name_from_tagref.sh).env
       - name: Set app.terraform.io token
-        run: echo 'credentials "app.terraform.io" { token = "'"${{ secrets.TERRAFORM_TOKEN }}"'" }' > ~/.terraformrc
+        run: |
+          echo 'credentials "app.terraform.io" { token = "${{ secrets.TERRAFORM_TOKEN }}" }' > ~/.terraformrc
+          cat ~/.terraformrc
       - name: Apply Terraform
         env:
           TF_IN_AUTOMATION: true

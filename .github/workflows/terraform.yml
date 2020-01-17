@@ -6,8 +6,8 @@ on:
       - '*@bar.somewhere'
       - '*@bar.odd'
 
-env:
-  TERRAFORM_VERSION: '0.12.18'
+# env:
+#   TERRAFORM_VERSION: '0.12.18'
 
 jobs:
   one:

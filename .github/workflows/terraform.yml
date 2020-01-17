@@ -1,10 +1,10 @@
 on:
   push:
     tags:
-      - *@foo.somewhere
-      - *@foo.random
-      - *@bar.somewhere
-      - *@bar.odd
+      - '*@foo.somewhere'
+      - '*@foo.random'
+      - '*@bar.somewhere'
+      - '*@bar.odd'
 
 env:
   TERRAFORM_VERSION: '0.12.9'

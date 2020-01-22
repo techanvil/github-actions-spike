@@ -25,7 +25,7 @@ jobs:
         run: echo ./scripts/cat.sh $(./scripts/name_from_tagref.sh).env
       - name: Set app.terraform.io token
         run: |
-          echo 'credentials "app.terraform.io" { token = "" }' > ~/.terraformrc
+          echo 'credentials "app.terraform.io" { token = "${{ secrets.TERRAFORM_TOKEN }}" }' > ~/.terraformrc
           cat ~/.terraformrc
       - name: Apply Terraform
         env:

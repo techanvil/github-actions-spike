@@ -1,0 +1,18 @@
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '*@conditions'
+  pull_request:
+
+jobs:
+  mr-happy-job:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Dump context
+        if: "!contains(github.event.head_commit.message, 'skip ci')"
+        run: |
+          echo github.ref: ${{ github.ref }}
+          echo github.event.base_ref: ${{ github.event.base_ref }}
+          env | grep -i github

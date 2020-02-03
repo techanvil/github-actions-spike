@@ -16,3 +16,5 @@ jobs:
           echo github.event.base_ref: ${{ github.event.base_ref }}
           env | grep -i github
           cat foo.txt
+      - name: Dump Github context
+        run: echo "${{ toJson(github) }}"

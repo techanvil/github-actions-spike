@@ -1,11 +1,16 @@
+name: Foo
+
 on:
   push:
+    branches:
+      - master
     tags:
       - '*@conditions'
   pull_request:
 
 jobs:
   mr-happy-job:
+    if: github.event.base_ref == 'refs/heads/master'
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v1

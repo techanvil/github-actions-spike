@@ -1,4 +1,4 @@
-name: Foo ${{ github.ref }}
+name: Foo
 
 on:
   push:
@@ -10,6 +10,7 @@ on:
 
 jobs:
   mr-happy-job:
+    name: "Github ref: ${{ github.ref }}"
     # if: github.event.base_ref == 'refs/heads/master'
     runs-on: ubuntu-18.04
     steps:
